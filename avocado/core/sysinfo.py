@@ -132,19 +132,19 @@ class SysInfo:
         locale = self.config.get("sysinfo.collect.locale")
         if self.profiler:
             for cmd in self.sysinfo_files["profilers"]:
-                self.start_collectibles.add(sysinfo.Daemon(cmd, locale=locale, use_sudo=True))
+                self.start_collectibles.add(sysinfo.Daemon(cmd, locale=locale))
 
         for cmd in self.sysinfo_files["commands"]:
             self.start_collectibles.add(
-                sysinfo.Command(cmd, timeout=timeout, locale=locale, use_sudo=True)
+                sysinfo.Command(cmd, timeout=timeout, locale=locale)
             )
             self.end_collectibles.add(
-                sysinfo.Command(cmd, timeout=timeout, locale=locale, use_sudo=True)
+                sysinfo.Command(cmd, timeout=timeout, locale=locale)
             )
 
         for fail_cmd in self.sysinfo_files["fail_commands"]:
             self.end_fail_collectibles.add(
-                sysinfo.Command(fail_cmd, timeout=timeout, locale=locale, use_sudo=True)
+                sysinfo.Command(fail_cmd, timeout=timeout, locale=locale)
             )
 
         for filename in self.sysinfo_files["files"]:
